@@ -24,15 +24,13 @@ class Users(BaseModel):
 
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     
-    company = db.relationship('Company', back_populates='user')
+    company = db.relationship('Companys', backref='user')
 
 
-class Company(BaseModel):
+class Companys(BaseModel):
     
     __tablename__ = 'company'
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=True)
-
-    user = db.relationship('Users', back_populates='company', lazy=True)
