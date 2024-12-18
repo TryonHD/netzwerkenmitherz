@@ -18,7 +18,8 @@ def homepage():
     for usr in users:
         result.append({"id": usr.id,
                        "name": usr.name,
-                       "last_name": usr.last_name
+                       "last_name": usr.last_name,
+                       "company": usr.company_id.name
                     })
     
     result_keys = list(result[0].keys())

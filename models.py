@@ -1,33 +1,38 @@
 from database import db
 
-class Users(db.Model):
+class BaseModel(db.Model):
+    __abstract__ = True  # Prevents this class from being treated as a table
+
+    def insert(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            raise e  # Re-raise the exception for further handling
+        finally:
+            db.session.close()
+
+
+class Users(BaseModel):
 
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer,
-                   primary_key=True,
-                   autoincrement=True)
-    
-    name = db.Column(db.String(100), 
-                     nullable=False)
-    
-    last_name = db.Column(db.String(100),
-                         nullable=False)
-    
-    company = db.Column(db.String(255),
-                       db.ForeignKey('company.id'),
-                       nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
 
-class Company(db.Model):
+    company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
+    
+    company = db.relationship('Company', back_populates='user')
+
+
+class Company(BaseModel):
     
     __tablename__ = 'company'
     
-    id = db.Column(db.Integer,
-                   primary_key=True,
-                   autoincrement=True)
-    
-    name = db.Column(db.String(100), 
-                     nullable=False)
-    
-    description = db.Column(db.String(5000), 
-                            nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(5000), nullable=True)
+
+    user = db.relationship('Users', back_populates='company', lazy=True)
