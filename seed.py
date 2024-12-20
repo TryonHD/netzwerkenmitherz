@@ -1,5 +1,5 @@
-from models import *
-from app import app
+from apps.models import *
+from run import app
 with app.app_context():
 
     db.drop_all()

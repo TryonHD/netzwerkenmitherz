@@ -1,0 +1,29 @@
+{% extends "default.html" %}
+
+{% block title %}NMH - Home{% endblock %}
+
+{% block content %}
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                {% for key in keys %}
+                <th scope="col">{{key}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in result %}
+            <tr>
+                <td>{{res.id}}</td>
+                <td>{{res.name}}</td>
+                <td>{{res.last_name}}</td>
+                <td>{{res.company}}</td>
+                <td>{{res.com_desc}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}
