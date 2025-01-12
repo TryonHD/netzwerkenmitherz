@@ -1,0 +1,42 @@
+{% extends "default.html" %}
+
+{% block title %}NMH - Home{% endblock %}
+
+{% block content %}
+
+{{result}}
+
+<div class="accordion" id="accordionExample">
+    {% for ev in events %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ev.id}}" aria-expanded="false" aria-controls="collapse{{ev.id}}">
+          Event on {{ev.date}}
+        </button>
+      </h2>
+      <div id="collapse{{ev.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Nachname</th>
+                        <th scope="col">Firma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in ev.event_attendance %}
+                    <tr>
+                        <td scope="col">{{att.user.name}}</td>
+                        <td scope="col">{{att.user.last_name}}</td>
+                        <td scope="col">{{att.user.company.name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -22,15 +22,36 @@ class Users(BaseModel):
     name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
 
-    company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
+    company_id = db.Column(db.Integer, db.ForeignKey('companys.id'), nullable=False)
     
     company = db.relationship('Companys', backref='user')
 
 
 class Companys(BaseModel):
     
-    __tablename__ = 'company'
+    __tablename__ = 'companys'
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=True)
+ 
+class Events(BaseModel):
+    
+    __tablename__ = 'events'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    date = db.Column(db.Date, nullable=False)
+    description = db.Column(db.String(5000), nullable=True)
+
+class EventAttendees(BaseModel):
+    
+    __tablename__ = 'event_attendees'
+    
+    eventId = db.Column(db.Integer, db.ForeignKey('events.id'), primary_key=True, nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True, nullable=False)
+    
+    attending = db.Column(db.Boolean, nullable=False)
+    attendance = db.Column(db.Boolean)
+
+    event = db.relationship('Events', backref='event_attendance')
+    user = db.relationship('Users', backref='event_attendance')
