@@ -10,11 +10,13 @@ def homepage():
     
     events = []
     
-    for ev in events_query_result:
-        events.append({
-            "id": ev.id,
-            "date": ev.date,
-            "desc": ev.description
-            })
+    #for ev in events_query_result:
+    #    events.append({
+    #        "id": ev.id,
+    #        "date": ev.date,
+    #        "desc": ev.description
+    #        })
+
+    renderdata = {'events': events_query_result}
     
-    return render_template("events.html", events=events_query_result)
+    return render_template("events.html", **renderdata)
