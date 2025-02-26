@@ -19,4 +19,5 @@ def homepage():
 
     renderdata = {'events': events_query_result}
     
+    # return render_template("events.html", foo=bar)
     return render_template("events.html", **renderdata)
