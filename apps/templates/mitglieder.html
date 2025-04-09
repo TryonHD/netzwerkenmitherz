@@ -1,0 +1,24 @@
+{% extends "default.html" %}
+
+{% block title %}Mitglieder{% endblock %}
+
+{% block content %}
+<div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="mitglieder-tab" data-bs-toggle="tab" data-bs-target="#mitglieder" type="button" role="tab" aria-controls="mitglieder" aria-selected="true">Mitglieder</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="firmen-tab" data-bs-toggle="tab" data-bs-target="#firmen" type="button" role="tab" aria-controls="firmen" aria-selected="false">Firmen</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="gewerke-tab" data-bs-toggle="tab" data-bs-target="#gewerke" type="button" role="tab" aria-controls="gewerke" aria-selected="false">Gewerke</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="mitglieder" role="tabpanel" aria-labelledby="mitglieder-tab">Mitglieder</div>
+        <div class="tab-pane fade" id="firmen" role="tabpanel" aria-labelledby="firmen-tab">Firmen</div>
+        <div class="tab-pane fade" id="gewerke" role="tabpanel" aria-labelledby="gewerke-tab">Gewerke</div>
+      </div>
+</div>
+{% endblock %}

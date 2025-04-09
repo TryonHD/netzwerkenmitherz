@@ -8,7 +8,7 @@ def homepage():
     
     events_query_result = db.session.query(Events).order_by(desc(Events.date)).all() 
     
-    events = []
+    # events = []
     
     #for ev in events_query_result:
     #    events.append({
