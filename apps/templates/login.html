@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f4f9;
+    }
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h3 class="text-center mb-4">Login</h3>
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-Mail-Adresse</label>
+        <input type="email" class="form-control" id="email" placeholder="E-Mail eingeben" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Passwort</label>
+        <input type="password" class="form-control" id="password" placeholder="Passwort eingeben" required>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Einloggen</button>
+      </div>
+      <div class="text-center mt-3">
+        <a href="#">Passwort vergessen?</a>
+      </div>
+    </form>
+  </div>

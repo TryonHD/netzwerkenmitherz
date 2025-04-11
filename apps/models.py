@@ -24,6 +24,7 @@ class Users(BaseModel):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=True)
     phonenumber = db.Column(db.String(20), nullable=True)
+    password = db.Column(db.String(255), nullable=True)
 
     company_id = db.Column(db.Integer, db.ForeignKey('companys.id'), nullable=True)
     

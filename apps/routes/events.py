@@ -2,9 +2,9 @@ from apps.models import *
 from flask import render_template, Blueprint
 from sqlalchemy import desc
 
-events_route = Blueprint('events_route', __name__, url_prefix='/events')
-@events_route.route("/")
-def homepage():
+events_route = Blueprint('events_route', __name__)
+@events_route.route("/events/")
+def events():
     
     events_query_result = db.session.query(Events).order_by(desc(Events.date)).all() 
     
