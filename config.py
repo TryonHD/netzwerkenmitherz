@@ -1,1 +1,1 @@
-BASE_PATH = "C:/Programming/netzwerkenmitherz/"
+BASE_PATH = "/home/kenny/programming/netzwerkenmitherz/"

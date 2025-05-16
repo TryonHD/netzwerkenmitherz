@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, session
+from flask_session import Session
 from apps.database import db_connect
 from config import *
 from apps.routes.index import index_route
@@ -9,6 +10,10 @@ from apps.routes.admin import admin_route
 from apps.routes.auth import auth_route
 
 app = Flask(__name__, template_folder=f'{BASE_PATH}apps/templates')
+
+app.secret_key = "SECRET_KEY"
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 db_connect(app)
 
