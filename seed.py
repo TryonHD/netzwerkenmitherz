@@ -8,9 +8,9 @@ with app.app_context():
     db.drop_all()
     db.create_all()
     
-    Address(street="Dietrichstraße", house_number="37b", postal_code="33104", city="Paderborn").insert()
+    Address(street="Dietrichstraße", housenumber="37b", postalcode="33104", city="Paderborn").insert()
 
-    Companys(name="Lenny Industries", description="Revolution", address_id=1).insert()
+    Companys(name="Lenny Industries", description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus mollis nulla pellentesque fringilla. Aliquam fermentum felis nec volutpat placerat. Vivamus ultrices pretium ex, eu posuere orci semper auctor. Morbi feugiat congue enim vitae mattis. Integer tristique aliquam risus, et ultricies ligula ultricies eget. Nulla augue ligula, venenatis cursus dapibus vel, ultrices eu sapien. Sed erat urna, malesuada eu hendrerit non, dictum id ipsum. Vestibulum tempus vestibulum justo, quis congue enim bibendum sed.", address_id=1).insert()
     Companys(name="PC2", description="HPC", address_id=1).insert()
 
     Users(surname="Lenny", name="Korsch", company_id=Companys.query.get(1).id, email="korsch.lenny@gmail.com", password=sha256(b"test1").hexdigest()).insert()

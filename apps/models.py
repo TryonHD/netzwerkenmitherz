@@ -69,8 +69,8 @@ class Address(BaseModel):
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     street = db.Column(db.String(100), nullable=False)
-    house_number = db.Column(db.String(10), nullable=False)
-    postal_code = db.Column(db.String(10), nullable=False)
+    housenumber = db.Column(db.String(10), nullable=False)
+    postalcode = db.Column(db.String(10), nullable=False)
     city = db.Column(db.String(100), nullable=False)
 
 class Professions(BaseModel):

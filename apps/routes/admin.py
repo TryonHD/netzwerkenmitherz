@@ -4,7 +4,7 @@ from .auth import authenticated
 
 admin_route = Blueprint('admin_route', __name__)
 @admin_route.route("/admin/")
-@authenticated
-def admin(user_idw):
+@authenticated(["admin"])
+def admin():
     
     return render_template("admin.html")

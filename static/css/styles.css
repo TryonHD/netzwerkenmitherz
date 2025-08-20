@@ -1,0 +1,22 @@
+.main-div {
+    margin: auto;
+    max-width: 70%;
+}
+
+.textbox-display {
+    font-size: 100%;
+}
+
+.gewerk-headline {
+    text-align: center;
+}
+
+.gen_font {
+    font-size: 25;
+}
+
+.prof_img {
+    border-radius: 50%;
+    width: 70%;
+    margin: 2%
+}

@@ -9,7 +9,7 @@ from apps.routes.profil import profil_route
 from apps.routes.admin import admin_route
 from apps.routes.auth import auth_route
 
-app = Flask(__name__, template_folder=f'{BASE_PATH}apps/templates')
+app = Flask(__name__, template_folder=f'{BASE_PATH}apps/templates', static_url_path='/static')
 
 app.secret_key = "SECRET_KEY"
 app.config["SESSION_TYPE"] = "filesystem"
