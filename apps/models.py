@@ -49,6 +49,7 @@ class Events(BaseModel):
     date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(5000), nullable=True)
     location = db.Column(db.String(200), nullable=True)
+    canceled = db.Column(db.Boolean, default=False)
 
 class EventAttendees(BaseModel):
     
