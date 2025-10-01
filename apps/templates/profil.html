@@ -6,27 +6,244 @@
 {% block title %}Profil{% endblock %}
 
 {% block content %}
-
-<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        Name
-    </div>
-    <div class="card-body">
-        {{user.surname}}
-        {{user.name}}
+<div class="py-3 px-3">
+    <div class="card">
+        <!-- <div class="card-header">Profil</div> -->
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <div class="row row-cols-md-1 g-4">
+                        <!-- Name -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: var(--main-color);">Name</h5>
+                                    <table class="table"><tbody>
+                                        <tr>
+                                            <th scpoe="row">Vorname</th>
+                                            <td>{{show_user.surname}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Nachname</th>
+                                            <td>{{show_user.name}}</td>
+                                        </tr>
+                                    </tbody></table>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-1">
+                                            {% if show_user.id == current_user.id %}
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editNameModal">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Company -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href=""><h5 class="card-title" style="color: var(--main-color);">{{show_user.company.name}}</h5></a>
+                                    <table class="table"><tbody>
+                                        {% for i in range(1, 6) %}
+                                        <tr>
+                                            <th scope="row">{{i}}</th>
+                                            <td>Gewerk</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody></table>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-1">
+                                            {% if show_user.id == current_user.id %}
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCompanyModal">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Address -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: var(--main-color);">Addresse</h5>
+                                    <table class="table"><tbody>
+                                        <tr>
+                                            <th scpoe="row">Straße</th>
+                                            <td>Dietrichstraße 37b</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ort</th>
+                                            <td>33104 Paderborn</td>
+                                        </tr>
+                                    </tbody></table>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-1">
+                                            {% if show_user.id == current_user.id %}
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editAddressModal">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Contact -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: var(--main-color);">Kontakt</h5>
+                                    <table class="table"><tbody>
+                                        <tr>
+                                            <th scpoe="row">Email</th>
+                                            <td>{{show_user.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Telefon</th>
+                                            <td>+49 93129548129</td>
+                                        </tr>
+                                    </tbody></table>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-1">
+                                            {% if show_user.id == current_user.id %}
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editContactModal">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Description -->
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: var(--main-color);">Beschreibung</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-1">
+                                            {% if show_user.id == current_user.id %}
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editDescriptionModal">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="card" style="width: 18rem;">
-    <div class="card-header">
-        {{user.company.name}}
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item"><span class="badge text-bg-secondary rounded-pill">1</span> Gewerk</li>
-            <li class="list-group-item"><span class="badge text-bg-secondary rounded-pill">2</span> Gewerk</li>
-        </ul>
+<!-- Edit Name -->
+<div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="editNameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editNameModalLabel">Name bearbeiten</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Vorname</label>
+                        <input type="text" class="form-control" name="surname" id="surname" aria-describedby="emailHelp" value="{{current_user.surname}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nachname</label>
+                        <input type="text" class="form-control" name="name" id="name" value="{{current_user.name}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
+<!-- Edit Company -->
+<div class="modal fade" id="editCompanyModal" tabindex="-1" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editCompanyModal">Firma bearbeiten</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit Address -->
+<div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editAddressModalLabel">Adresse bearbeiten</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit Contact -->
+<div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="editContactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editContactModalLabel">Kontaktinformationen bearbeiten</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit Description -->
+<div class="modal fade" id="editDescriptionModal" tabindex="-1" aria-labelledby="editDescriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editDescriptionModalLabel">Beschreibung bearbeiten</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

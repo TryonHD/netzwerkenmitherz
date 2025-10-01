@@ -8,3 +8,5 @@ lib64
 pyvenv.cfg
 include/
 config.py
+flas_session/
+flask_session

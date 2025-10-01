@@ -1,22 +1,23 @@
-.main-div {
-    margin: auto;
-    max-width: 70%;
+a:link { 
+	text-decoration: none; 
 }
 
-.textbox-display {
-    font-size: 100%;
+a:hover { 
+	color: inherit;
+	text-decoration: underline; 
 }
 
-.gewerk-headline {
-    text-align: center;
+.btn-primary {
+	--bs-btn-bg: var(--main-color)!important;
+    --bs-btn-border-color: var(--main-color)!important;
 }
 
-.gen_font {
-    font-size: 25;
+.btn-primary:hover {
+	background-color: var(--main-color-hover)!important;
+    border-color: var(--main-color-hover)!important;
 }
 
-.prof_img {
-    border-radius: 50%;
-    width: 70%;
-    margin: 2%
+:root {
+    --main-color: #d02d79;
+    --main-color-hover: #962359;
 }
