@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="py-3 px-3">
-    <div class="card">
+    <div class="background-card card">
         <!-- <div class="card-header">Profil</div> -->
         <div class="row">
             <div class="col-sm-7">
@@ -19,11 +19,11 @@
                                 <div class="card-body">
                                     <h5 class="card-title" style="color: var(--main-color);">Name</h5>
                                     <table class="table"><tbody>
-                                        <tr>
+                                        <tr class="">
                                             <th scpoe="row">Vorname</th>
                                             <td>{{show_user.surname}}</td>
                                         </tr>
-                                        <tr>
+                                        <tr class="">
                                             <th scope="row">Nachname</th>
                                             <td>{{show_user.name}}</td>
                                         </tr>
@@ -32,7 +32,8 @@
                                         <div class="p-1">
                                             {% if show_user.id == current_user.id %}
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editNameModal">
-                                                <i class="fa-solid fa-pen"></i>
+                                                Test
+                                                <i class="button-icon fa-solid fa-pen"></i>
                                             </button>
                                             {% endif %}
                                         </div>
@@ -142,7 +143,9 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                
+                <div class="card-body">
+
+                </div>
             </div>
         </div>
     </div>
