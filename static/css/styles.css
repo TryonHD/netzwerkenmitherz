@@ -17,6 +17,15 @@ a:hover {
     border-color: var(--main-color-hover)!important;
 }
 
+.link-primary {
+	color: var(--main-color)!important;
+}
+
+.link-primary:hover {
+	color: var(--main-color-hover)!important;
+	text-decoration-color: var(--main-color-hover)!important;
+}
+
 :root {
     --main-color: #d02d79;
     --main-color-hover: #962359;

@@ -46,10 +46,11 @@
                                 <div class="card-body">
                                     <a href=""><h5 class="card-title" style="color: var(--main-color);">{{show_user.company.name}}</h5></a>
                                     <table class="table"><tbody>
-                                        {% for i in range(1, 6) %}
+                                        {% set profession_count =  show_user.company.company_professions|length | title if show_user.company.company_professions|length <=5 else 5 %}
+                                        {% for i in range(profession_count) %}
                                         <tr>
-                                            <th scope="row">{{i}}</th>
-                                            <td>Gewerk</td>
+                                            <th scope="row">{{i + 1}}</th>
+                                            <td>{{show_user.company.company_professions[i].profession.name}}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody></table>
@@ -69,15 +70,15 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="color: var(--main-color);">Addresse</h5>
+                                    <h5 class="card-title" style="color: var(--main-color);">Adresse</h5>
                                     <table class="table"><tbody>
                                         <tr>
                                             <th scpoe="row">Straße</th>
-                                            <td>Dietrichstraße 37b</td>
+                                            <td>{{show_user.company.street}} {{show_user.company.housenumber}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Ort</th>
-                                            <td>33104 Paderborn</td>
+                                            <td>{{show_user.company.postalcode}} {{show_user.company.city}}</td>
                                         </tr>
                                     </tbody></table>
                                     <div class="d-flex flex-row-reverse justify-content-between">
@@ -104,7 +105,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Telefon</th>
-                                            <td>+49 93129548129</td>
+                                            <td>{{show_user.phonenumber}}</td>
                                         </tr>
                                     </tbody></table>
                                     <div class="d-flex flex-row-reverse justify-content-between">
@@ -124,7 +125,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title" style="color: var(--main-color);">Beschreibung</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                    <p class="card-text">{{current_user.company.description}}</p>
                                     <div class="d-flex flex-row-reverse justify-content-between">
                                         <div class="p-1">
                                             {% if show_user.id == current_user.id %}
@@ -147,6 +148,7 @@
     </div>
 </div>
 
+{% if show_user.id == current_user.id %}
 <!-- Edit Name -->
 <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="editNameModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -159,7 +161,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="surname" class="form-label">Vorname</label>
-                        <input type="text" class="form-control" name="surname" id="surname" aria-describedby="emailHelp" value="{{current_user.surname}}">
+                        <input type="text" class="form-control" name="surname" id="surname" value="{{current_user.surname}}">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nachname</label>
@@ -176,74 +178,111 @@
 </div>
 <!-- Edit Company -->
 <div class="modal fade" id="editCompanyModal" tabindex="-1" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editCompanyModal">Firma bearbeiten</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editNameModalLabel">Firma bearbeiten</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="company_name" class="form-label">Frimenname</label>
+                        <input type="text" class="form-control" name="company_name" id="company_name" value="{{current_user.company.name}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Edit Address -->
 <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editAddressModalLabel">Adresse bearbeiten</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editNameModalLabel">Adresse bearbeiten</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Straße</label>
+                        <input type="text" class="form-control" name="street" id="street" value="{{current_user.company.street}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="housenumber" class="form-label">Hausnummer</label>
+                        <input type="text" class="form-control" name="housenumber" id="housenumber" value="{{current_user.company.housenumber}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="postalcode" class="form-label">Postleitzahl</label>
+                        <input type="text" class="form-control" name="postalcode" id="postalcode" value="{{current_user.company.postalcode}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Ort</label>
+                        <input type="text" class="form-control" name="city" id="city" value="{{current_user.company.city}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Edit Contact -->
 <div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="editContactModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editContactModalLabel">Kontaktinformationen bearbeiten</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editNameModalLabel">Kontakt bearbeiten</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email" id="email" value="{{current_user.email}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phonenumber" class="form-label">Telefon</label>
+                        <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="{{current_user.phonenumber}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Edit Description -->
 <div class="modal fade" id="editDescriptionModal" tabindex="-1" aria-labelledby="editDescriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editDescriptionModalLabel">Beschreibung bearbeiten</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" id="description_form">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editNameModalLabel">Kontakt bearbeiten</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Beschreibung</label>
+                        <textarea type="text" form="description_form" class="form-control" name="description" id="description">{{current_user.company.description}}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
+{% endif %}
 {% endblock %}

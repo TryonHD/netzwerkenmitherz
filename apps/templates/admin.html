@@ -3,7 +3,54 @@
 {% block title %}Admin{% endblock %}
 
 {% block content %}
-<div>
-Admin
+{% for error in errors %}
+    <h>{{error}}</h><br>
+{% endfor %}
+<div class="py-3 px-3">
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <i class="fa-solid fa-plus"></i>
+                        Mitglied hinzufügen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Add User -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addUserModalLabel">Mitglied hinzufügen</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email" id="email" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Vorname</label>
+                        <input type="text" class="form-control" name="surname" id="surname" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nachname</label>
+                        <input type="text" class="form-control" name="name" id="name" value="" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

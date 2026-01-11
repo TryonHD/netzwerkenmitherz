@@ -2,6 +2,7 @@ from apps.models import *
 from flask import render_template, Blueprint, session
 from sqlalchemy import desc
 from .auth import authenticated
+import datetime
 
 events_route = Blueprint("events_route", __name__)
 
@@ -20,8 +21,19 @@ def events():
     #        "desc": ev.description
     #        })
 
+    today = datetime.datetime.today()
+    future_events = []
+    past_events = []
+
+    for event in events_query_result:
+        if event.date >= today:
+            future_events.append(event)
+        else:
+            past_events.append(event)
+
     renderdata = {
-        "events": events_query_result,
+        "future_events": future_events,
+        "past_events": past_events,
         "current_user": db.session.query(Users)
         .filter(Users.id == session["user_id"])
         .one(),

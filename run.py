@@ -8,6 +8,7 @@ from apps.routes.mitglieder import mitglieder_route
 from apps.routes.profil import profil_route
 from apps.routes.admin import admin_route
 from apps.routes.auth import auth_route
+from apps.routes.register import register_route
 
 app = Flask(
     __name__, template_folder=f"{BASE_PATH}/apps/templates", static_url_path="/static"
@@ -25,3 +26,4 @@ app.register_blueprint(mitglieder_route)
 app.register_blueprint(profil_route)
 app.register_blueprint(admin_route)
 app.register_blueprint(auth_route)
+app.register_blueprint(register_route)
