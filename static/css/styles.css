@@ -1,10 +1,10 @@
 :root {
-    --main-color: #d02d79;
-    --main-color-hover: #962359;
-	--main-color-background: #8a3b3b;
-	--main-color-background-secondary: #2da1c2;
-	--table-tr1-color-background: #9ac22d;
-	--table-tr2-color-background: #afdc32;
+    --main-color: #e63748;
+    --main-color-hover: #bf4253;
+	--main-color-background: #1a1f1a;
+	--main-color-background-secondary: #2c2c29;
+	--table-tr1-color-background: #3a3a3e;
+	--table-tr2-color-background: #ffffff14;
 }
 
 a:link { 
@@ -19,6 +19,7 @@ a:hover {
 .btn-primary {
 	--bs-btn-bg: var(--main-color)!important;
     --bs-btn-border-color: var(--main-color)!important;
+	text-decoration-color: #ffffff;
 	
 }
 
@@ -36,6 +37,10 @@ a:hover {
 	text-decoration-color: var(--main-color-hover)!important;
 }
 
+.bg-body-tertiary {
+background-color: var(--main-color-background) !important;
+}
+
 .img-navbar {
   padding: .25rem;
   max-width: 100px;
@@ -48,7 +53,7 @@ a:hover {
 
 .card {
 	background-color: var(--main-color-background-secondary)!important;
-	border-color: #000!important;
+	border-color: #2c2c29!important;
 }
 
 .background-card {
@@ -57,14 +62,24 @@ a:hover {
 }
 
 .card-title{
-	background-color: #000;
+	background-color: #e63748;
 	margin-bottom: 10px!important;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: 900;
+	text-transform: uppercase;
+	border-radius: 7px;
+	color: #ffffff !important;
 }
 
 .card-text{
 	padding: 50px;
+	color: #ffffff;
+	background-color: #3c3a3a!important;
+	border-radius: 7px;
+
 }
 
 .button-icon{
-	color:#120fd5;
+	color:#ffffff;
 }
